@@ -1,4 +1,5 @@
 
+name: Build & Deploy
 on:
   push
 jobs:
@@ -12,6 +13,6 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@master 
       env:
         ACCESS_TOKEN: ${{ secrets.deploy_key }} 
-        BRANCH: master 
-        FOLDER: gh-pages 
+        BRANCH: gh-pages 
+        FOLDER: dist 
         BUILD_SCRIPT: yarn && yarn build && yarn test:unit

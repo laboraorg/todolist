@@ -1,1 +1,1 @@
-[Laboratory organization](https://github.com/laboraorg).
+[Laboratory organization](https://github.com/laboraorg)

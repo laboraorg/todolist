@@ -10,12 +10,15 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@master 
-
-    - name: Build & Deploy
-      uses: JamesIves/github-pages-deploy-action@master 
+      
+    - name: yarn install, build, and test
+      run: |
+        yarn
+        yarn build
+        yarn test:unit
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v2.5.0
       env:
-        ACCESS_TOKEN: ${{ secrets.deploy_key }} 
-        BASE_BRANCH: master
-        BRANCH: gh-pages 
-        FOLDER: dist 
-        BUILD_SCRIPT: yarn && yarn build && yarn test:unit
+        ACTIONS_DEPLOY_KEY: ${{ secrets.deploy_key }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: dist

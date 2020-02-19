@@ -1,7 +1,9 @@
 
 name: Build & Deploy
 on:
-  push
+  push:
+    branches:
+      - master
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -9,10 +11,11 @@ jobs:
     - name: checkout
       uses: actions/checkout@master 
 
-    - name: buildAndDeploy
+    - name: Build & Deploy
       uses: JamesIves/github-pages-deploy-action@master 
       env:
         ACCESS_TOKEN: ${{ secrets.deploy_key }} 
+        BASE_BRANCH: master
         BRANCH: gh-pages 
         FOLDER: dist 
         BUILD_SCRIPT: yarn && yarn build && yarn test:unit
